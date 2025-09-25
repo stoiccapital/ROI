@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsara ROI Calculator – Telematics & Dashcams</title>
+    <meta name="description" content="Calculate ROI from Samsara telematics and AI dashcams for fleet management">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Samsara ROI Calculator – Telematics & Dashcams</h1>
+        <p class="subtitle">Quantify savings from fuel optimization, accident reduction, and insurance discounts</p>
+    </header>
+
+    <main class="main-container">
+        <!-- Input Panel -->
+        <section class="input-panel" aria-label="Calculator Inputs">
+            <!-- Fleet Card -->
+            <div class="card">
+                <h2>Fleet Configuration</h2>
+                <div class="input-group">
+                    <label for="vehicleCount">
+                        Number of Vehicles
+                        <span class="tooltip" data-tooltip="Total vehicles in your fleet">ℹ️</span>
+                    </label>
+                    <input type="number" id="vehicleCount" min="1" max="10000" value="50" required>
+                </div>
+                <div class="input-group">
+                    <label for="annualKmPerVehicle">
+                        Annual KM per Vehicle
+                        <span class="tooltip" data-tooltip="Average kilometers driven per vehicle per year">ℹ️</span>
+                    </label>
+                    <input type="number" id="annualKmPerVehicle" min="1000" max="200000" value="45000" required>
+                </div>
+                <div class="input-group">
+                    <label for="fuelConsumptionLPer100km">
+                        Fuel Consumption (L/100km)
+                        <span class="tooltip" data-tooltip="Average fuel consumption per 100 kilometers">ℹ️</span>
+                    </label>
+                    <input type="number" id="fuelConsumptionLPer100km" min="5" max="50" step="0.1" value="10.5" required>
+                </div>
+                <div class="input-group">
+                    <label for="fuelPricePerLitre">
+                        Fuel Price per Litre
+                        <span class="tooltip" data-tooltip="Current fuel price including taxes">ℹ️</span>
+                    </label>
+                    <input type="number" id="fuelPricePerLitre" min="0.5" max="5" step="0.01" value="1.90" required>
+                </div>
+            </div>
+
+            <!-- Safety & Insurance Card -->
+            <div class="card">
+                <h2>Safety & Insurance</h2>
+                <div class="input-group">
+                    <label for="baselineAccidentsPerYear">
+                        Baseline Accidents per Year
+                        <span class="tooltip" data-tooltip="Current accident frequency across your fleet">ℹ️</span>
+                    </label>
+                    <input type="number" id="baselineAccidentsPerYear" min="0" max="1000" value="12" required>
+                </div>
+                <div class="input-group">
+                    <label for="avgAccidentCost">
+                        Average Accident Cost
+                        <span class="tooltip" data-tooltip="Total cost per accident including repairs, downtime, and admin">ℹ️</span>
+                    </label>
+                    <input type="number" id="avgAccidentCost" min="100" max="100000" value="6500" required>
+                </div>
+                <div class="input-group">
+                    <label for="annualInsurancePremium">
+                        Annual Insurance Premium (Total Fleet)
+                        <span class="tooltip" data-tooltip="Total annual insurance cost for entire fleet">ℹ️</span>
+                    </label>
+                    <input type="number" id="annualInsurancePremium" min="1000" max="10000000" value="120000" required>
+                </div>
+            </div>
+
+            <!-- Expected Impact Card -->
+            <div class="card">
+                <h2>Expected Impact from Samsara</h2>
+                <div class="input-group">
+                    <label for="fuelSavingsPct">
+                        Fuel Savings %
+                        <span class="tooltip" data-tooltip="Typical fleets see 4–10% reduction from idling control, route optimisation, and driver coaching">ℹ️</span>
+                    </label>
+                    <input type="number" id="fuelSavingsPct" min="0" max="50" step="0.1" value="6" required>
+                </div>
+                <div class="input-group">
+                    <label for="accidentReductionPct">
+                        Accident Reduction %
+                        <span class="tooltip" data-tooltip="AI dashcams & coaching can reduce collisions by 20–50% depending on baseline risk">ℹ️</span>
+                    </label>
+                    <input type="number" id="accidentReductionPct" min="0" max="100" step="0.1" value="30" required>
+                </div>
+                <div class="input-group">
+                    <label for="insuranceReductionPct">
+                        Insurance Reduction %
+                        <span class="tooltip" data-tooltip="Insurers may discount premiums (3–15%) when telematics + video evidence reduces claim severity/frequency">ℹ️</span>
+                    </label>
+                    <input type="number" id="insuranceReductionPct" min="0" max="50" step="0.1" value="8" required>
+                </div>
+                <div class="input-group">
+                    <label for="adoptionPct">
+                        Adoption Rate %
+                        <span class="tooltip" data-tooltip="Percentage of fleet that will adopt and benefit from the system">ℹ️</span>
+                    </label>
+                    <input type="number" id="adoptionPct" min="0" max="100" step="0.1" value="90" required>
+                </div>
+            </div>
+
+            <!-- Costs Card -->
+            <div class="card">
+                <h2>Program Costs</h2>
+                <div class="input-group">
+                    <label for="hardwareCostPerVehicle">
+                        Hardware Cost per Vehicle
+                        <span class="tooltip" data-tooltip="One-time hardware cost for telematics and dashcam equipment">ℹ️</span>
+                    </label>
+                    <input type="number" id="hardwareCostPerVehicle" min="0" max="5000" value="350" required>
+                </div>
+                <div class="input-group">
+                    <label for="subscriptionPerVehiclePerMonth">
+                        Subscription per Vehicle per Month
+                        <span class="tooltip" data-tooltip="Monthly software subscription and data costs">ℹ️</span>
+                    </label>
+                    <input type="number" id="subscriptionPerVehiclePerMonth" min="0" max="200" step="0.01" value="35" required>
+                </div>
+                <div class="input-group">
+                    <label for="implementationOneOff">
+                        Implementation (One-off)
+                        <span class="tooltip" data-tooltip="One-time setup and installation costs">ℹ️</span>
+                    </label>
+                    <input type="number" id="implementationOneOff" min="0" max="50000" value="2500" required>
+                </div>
+                <div class="input-group">
+                    <label for="trainingOneOff">
+                        Training (One-off)
+                        <span class="tooltip" data-tooltip="One-time training costs for drivers and management">ℹ️</span>
+                    </label>
+                    <input type="number" id="trainingOneOff" min="0" max="50000" value="1500" required>
+                </div>
+            </div>
+
+            <!-- Finance Card -->
+            <div class="card">
+                <h2>Financial Parameters</h2>
+                <div class="input-group">
+                    <label for="timeHorizonYears">
+                        Time Horizon (Years)
+                        <span class="tooltip" data-tooltip="Analysis period for ROI calculation">ℹ️</span>
+                    </label>
+                    <input type="number" id="timeHorizonYears" min="1" max="10" value="3" required>
+                </div>
+                <div class="input-group">
+                    <label for="discountRatePct">
+                        Discount Rate %
+                        <span class="tooltip" data-tooltip="Annual discount rate for NPV calculation">ℹ️</span>
+                    </label>
+                    <input type="number" id="discountRatePct" min="0" max="20" step="0.1" value="8" required>
+                </div>
+                <div class="input-group">
+                    <label for="currency">
+                        Currency
+                        <span class="tooltip" data-tooltip="Currency for all calculations and display">ℹ️</span>
+                    </label>
+                    <select id="currency" required>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="GBP">GBP (£)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="startMonth">
+                        Start Month
+                        <span class="tooltip" data-tooltip="Month when savings begin (next full month)">ℹ️</span>
+                    </label>
+                    <input type="month" id="startMonth" required>
+                </div>
+            </div>
+
+            <!-- Advanced Card -->
+            <details class="card advanced-card">
+                <summary>Advanced Parameters</summary>
+                <div class="input-group">
+                    <label for="utilisationRampMonths">
+                        Utilisation Ramp (Months)
+                        <span class="tooltip" data-tooltip="Linear ramp period to reach full adoption rate">ℹ️</span>
+                    </label>
+                    <input type="number" id="utilisationRampMonths" min="0" max="24" value="2" required>
+                </div>
+                <div class="input-group">
+                    <label for="resaleRecoveryPctHardware">
+                        Hardware Resale Recovery %
+                        <span class="tooltip" data-tooltip="Percentage of hardware cost recovered at end of horizon">ℹ️</span>
+                    </label>
+                    <input type="number" id="resaleRecoveryPctHardware" min="0" max="100" step="0.1" value="0" required>
+                </div>
+                <div class="input-group">
+                    <label for="maintenancePerVehiclePerYear">
+                        Maintenance per Vehicle per Year
+                        <span class="tooltip" data-tooltip="Annual maintenance costs for telematics equipment">ℹ️</span>
+                    </label>
+                    <input type="number" id="maintenancePerVehiclePerYear" min="0" max="1000" value="0" required>
+                </div>
+            </details>
+
+            <!-- Example Data Buttons -->
+            <div class="card">
+                <h2>Quick Examples</h2>
+                <div class="example-buttons">
+                    <button type="button" class="example-btn" data-example="courier">Courier/Last-Mile (50 vehicles)</button>
+                    <button type="button" class="example-btn" data-example="bus">Regional Bus (120 vehicles)</button>
+                    <button type="button" class="example-btn" data-example="taxi">Taxis/PHV (30 vehicles)</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Panel -->
+        <section class="results-panel" aria-label="Calculation Results">
+            <!-- Scenario Toggles -->
+            <div class="scenario-toggles">
+                <button type="button" class="scenario-btn active" data-scenario="conservative">Conservative</button>
+                <button type="button" class="scenario-btn active" data-scenario="base">Base Case</button>
+                <button type="button" class="scenario-btn active" data-scenario="aggressive">Aggressive</button>
+            </div>
+
+            <!-- KPI Tiles -->
+            <div class="kpi-grid">
+                <div class="kpi-tile">
+                    <h3>Payback Period</h3>
+                    <div class="kpi-value" id="paybackValue">-</div>
+                    <div class="kpi-unit">months</div>
+                </div>
+                <div class="kpi-tile">
+                    <h3>ROI</h3>
+                    <div class="kpi-value" id="roiValue">-</div>
+                    <div class="kpi-unit">%</div>
+                </div>
+                <div class="kpi-tile">
+                    <h3>Annual Savings</h3>
+                    <div class="kpi-value" id="annualSavingsValue">-</div>
+                    <div class="kpi-unit" id="annualSavingsUnit">€</div>
+                </div>
+            </div>
+
+            <!-- Cash Flow Sparkline -->            <div class="sparkline-container">
+                <h3>Cumulative Cash Flow</h3>
+                <canvas id="sparklineCanvas" width="300" height="100" aria-label="Cumulative cash flow over time"></canvas>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-container">
+                <div class="chart-container">
+                    <h3>Monthly Cash Flow</h3>
+                    <canvas id="cashFlowChart" width="400" height="200" aria-label="Monthly net cash flow over time"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Annual Savings Breakdown</h3>
+                    <canvas id="savingsChart" width="400" height="200" aria-label="Breakdown of annual savings by category"></canvas>
+                </div>
+            </div>
+
+            <!-- Export Buttons -->
+            <div class="export-buttons">
+                <button type="button" id="exportCSV" class="export-btn">Export CSV</button>
+                <button type="button" id="exportPDF" class="export-btn">Export PDF</button>
+                <button type="button" id="copyShareLink" class="export-btn">Copy Share Link</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- How it Works Section -->
+    <details class="how-it-works">
+        <summary>How This Calculator Works</summary>
+        <div class="formula-reference">
+            <h3>Key Formulas</h3>
+            <ul>
+                <li><strong>Baseline Fuel Cost:</strong> vehicles × km/vehicle × (L/100km ÷ 100) × price/L</li>
+                <li><strong>Fuel Savings:</strong> baseline fuel cost × savings% × adoption%</li>
+                <li><strong>Accident Savings:</strong> accidents avoided × average cost per accident</li>
+                <li><strong>Insurance Savings:</strong> annual premium × reduction% × adoption%</li>
+                <li><strong>NPV:</strong> sum of discounted monthly cash flows</li>
+                <li><strong>IRR:</strong> discount rate where NPV = 0</li>
+            </ul>
+        </div>
+    </details>
+
+    <footer class="footer">
+        <p><strong>Disclaimer:</strong> Results are illustrative estimates based on user inputs and typical industry ranges. Actual outcomes vary. This tool stores data only in your browser.</p>
+    </footer>
+
+    <!-- Scripts -->
+    
+    
+    
+    
+    <script type="module" src="src/ui.js"></script>
+    <script type="module" src="src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsara ROI Calculator – Simple</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Samsara ROI Calculator – Telematics & Dashcams</h1>
+        <p class="subtitle">Simple version - Essential calculations only</p>
+    </header>
+
+    <main class="main-container">
+        <!-- Input Panel -->
+        <section class="input-panel">
+            <!-- Fleet Card -->
+            <div class="card">
+                <h2>Fleet Configuration</h2>
+                <div class="input-group">
+                    <label for="vehicleCount">Number of Vehicles</label>
+                    <input type="number" id="vehicleCount" min="1" max="10000" value="50" required>
+                </div>
+                <div class="input-group">
+                    <label for="annualKmPerVehicle">Annual KM per Vehicle</label>
+                    <input type="number" id="annualKmPerVehicle" min="1000" max="200000" value="45000" required>
+                </div>
+                <div class="input-group">
+                    <label for="fuelConsumptionLPer100km">Fuel Consumption (L/100km)</label>
+                    <input type="number" id="fuelConsumptionLPer100km" min="5" max="50" step="0.1" value="10.5" required>
+                </div>
+                <div class="input-group">
+                    <label for="fuelPricePerLitre">Fuel Price per Litre</label>
+                    <input type="number" id="fuelPricePerLitre" min="0.5" max="5" step="0.01" value="1.90" required>
+                </div>
+            </div>
+
+            <!-- Safety & Insurance Card -->
+            <div class="card">
+                <h2>Safety & Insurance</h2>
+                <div class="input-group">
+                    <label for="baselineAccidentsPerYear">Baseline Accidents per Year</label>
+                    <input type="number" id="baselineAccidentsPerYear" min="0" max="1000" value="12" required>
+                </div>
+                <div class="input-group">
+                    <label for="avgAccidentCost">Average Accident Cost</label>
+                    <input type="number" id="avgAccidentCost" min="100" max="100000" value="6500" required>
+                </div>
+                <div class="input-group">
+                    <label for="annualInsurancePremium">Annual Insurance Premium (Total Fleet)</label>
+                    <input type="number" id="annualInsurancePremium" min="1000" max="10000000" value="120000" required>
+                </div>
+            </div>
+
+            <!-- Expected Impact Card -->
+            <div class="card">
+                <h2>Expected Savings from Samsara</h2>
+                <div class="input-group">
+                    <label for="fuelSavingsPct">Fuel Savings %</label>
+                    <input type="number" id="fuelSavingsPct" min="0" max="50" step="0.1" value="6" required>
+                </div>
+                <div class="input-group">
+                    <label for="accidentReductionPct">Accident Reduction %</label>
+                    <input type="number" id="accidentReductionPct" min="0" max="100" step="0.1" value="30" required>
+                    <div id="accidentReductionWarning" class="warning-message" style="display: none;">
+                        ⚠️ Values above 80% are unrealistic for most fleets
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="insuranceReductionPct">Insurance Reduction %</label>
+                    <input type="number" id="insuranceReductionPct" min="0" max="50" step="0.1" value="8" required>
+                </div>
+                <div class="input-group">
+                    <label for="adoptionPct">Adoption Rate %</label>
+                    <input type="number" id="adoptionPct" min="0" max="100" step="0.1" value="90" required>
+                </div>
+            </div>
+
+            <!-- Costs Card -->
+            <div class="card">
+                <h2>Program Costs</h2>
+
+                <div class="input-group">
+                    <label for="subscriptionPerVehiclePerMonth">Subscription per Vehicle per Month</label>
+                    <input type="number" id="subscriptionPerVehiclePerMonth" min="0" max="200" step="0.01" value="35" required>
+                </div>
+                <div class="input-group">
+                    <label for="implementationOneOff">Implementation (One-off)</label>
+                    <input type="number" id="implementationOneOff" min="0" max="50000" value="2500" required>
+                </div>
+                <div class="input-group">
+                    <label for="trainingOneOff">Training (One-off)</label>
+                    <input type="number" id="trainingOneOff" min="0" max="50000" value="1500" required>
+                </div>
+            </div>
+
+            <!-- Finance Card -->
+            <div class="card">
+                <h2>Financial Parameters</h2>
+                <div class="input-group">
+                    <label for="timeHorizonYears">Time Horizon (Years)</label>
+                    <input type="number" id="timeHorizonYears" min="1" max="10" value="3" required>
+                </div>
+                <div class="input-group">
+                    <label for="currency">Currency</label>
+                    <select id="currency" required>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="GBP">GBP (£)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Example Data Buttons -->
+            <div class="card">
+                <h2>Quick Examples</h2>
+                <div class="example-buttons">
+                    <button type="button" class="example-btn" data-example="courier">Courier/Last-Mile (100 vehicles)</button>
+                    <button type="button" class="example-btn" data-example="bus">Regional Bus (100 vehicles)</button>
+                    <button type="button" class="example-btn" data-example="taxi">Taxis/PHV (100 vehicles)</button>
+                    <button type="button" class="example-btn" data-example="freight">Freight Forwarding (100 vehicles)</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Panel -->
+        <section class="results-panel">
+            <!-- KPI Tiles -->
+            <div class="kpi-grid">
+                <div class="kpi-tile">
+                    <h3>Payback Period</h3>
+                    <div class="kpi-value" id="paybackValue">-</div>
+                    <div class="kpi-unit">months</div>
+                </div>
+                <div class="kpi-tile">
+                    <h3>ROI</h3>
+                    <div class="kpi-value" id="roiValue">-</div>
+                    <div class="kpi-unit">%</div>
+                </div>
+                <div class="kpi-tile">
+                    <h3>Annual Savings</h3>
+                    <div class="kpi-value" id="annualSavingsValue">-</div>
+                    <div class="kpi-unit" id="annualSavingsUnit">€</div>
+                </div>
+                <div class="kpi-tile">
+                    <h3>Annual Cost</h3>
+                    <div class="kpi-value" id="annualCostValue">-</div>
+                    <div class="kpi-unit" id="annualCostUnit">€</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p><strong>Disclaimer:</strong> Results are illustrative estimates based on user inputs and typical industry ranges. Actual outcomes vary.</p>
+    </footer>
+
+    <!-- Single JavaScript file -->
+    <script src="src/simple-calc.js"></script>
+</body>
+</html>
